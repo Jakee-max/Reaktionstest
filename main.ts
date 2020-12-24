@@ -9,22 +9,7 @@ input.onButtonPressed(Button.A, function () {
         basic.showString("Game Over")
     }
 })
-input.onButtonPressed(Button.B, function () {
-    if (LR == 1) {
-        Reaktionszeit = input.runningTime() - Startzeit
-        for (let index = 0; index < 3; index++) {
-            basic.showNumber(Reaktionszeit)
-            basic.showString("ms")
-        }
-    } else {
-        basic.showString("Game Over")
-    }
-})
-let Startzeit = 0
-let Reaktionszeit = 0
-let LR = 0
-basic.showString("Reaktionstest")
-basic.forever(function () {
+input.onButtonPressed(Button.AB, function () {
     basic.showNumber(3)
     basic.pause(1000)
     basic.showNumber(2)
@@ -53,3 +38,18 @@ basic.forever(function () {
     Startzeit = input.runningTime()
     basic.pause(5000)
 })
+input.onButtonPressed(Button.B, function () {
+    if (LR == 1) {
+        Reaktionszeit = input.runningTime() - Startzeit
+        for (let index = 0; index < 3; index++) {
+            basic.showNumber(Reaktionszeit)
+            basic.showString("ms")
+        }
+    } else {
+        basic.showString("Game Over")
+    }
+})
+let Startzeit = 0
+let Reaktionszeit = 0
+let LR = 0
+basic.showString("Reaktionstest")
