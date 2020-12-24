@@ -1,6 +1,3 @@
-/**
- * Falsche taste gedrückt
- */
 input.onButtonPressed(Button.A, function () {
     if (LR == 0) {
         Reaktionszeit = input.runningTime() - Startzeit
@@ -12,12 +9,17 @@ input.onButtonPressed(Button.A, function () {
         basic.showString("Game Over")
     }
 })
-/**
- * Zähler von 3, 2, 1, Start
- */
-/**
- * Zufallszahl für Taste A oder B
- */
+input.onGesture(Gesture.Shake, function () {
+    if (LR == 1) {
+        Reaktionszeit = input.runningTime() - Startzeit
+        for (let index = 0; index < 3; index++) {
+            basic.showNumber(Reaktionszeit)
+            basic.showString("ms")
+        }
+    } else {
+        basic.showString("Game Over")
+    }
+})
 input.onButtonPressed(Button.AB, function () {
     basic.showNumber(3)
     basic.pause(1000)
@@ -25,7 +27,7 @@ input.onButtonPressed(Button.AB, function () {
     basic.pause(1000)
     basic.showNumber(1)
     basic.pause(1000)
-    if (0 == randint(0, 1)) {
+    if (0 == randint(0, 2)) {
         basic.showLeds(`
             . . # . .
             . # . . .
@@ -34,6 +36,15 @@ input.onButtonPressed(Button.AB, function () {
             . . # . .
             `)
         LR = 0
+    } else if (randint(0, 2) == 1) {
+        basic.showLeds(`
+            . . # . .
+            . # . # .
+            # # # # #
+            . # . # .
+            . . # . .
+            `)
+        LR = 1
     } else {
         basic.showLeds(`
             . . # . .
@@ -42,16 +53,13 @@ input.onButtonPressed(Button.AB, function () {
             . . . # .
             . . # . .
             `)
-        LR = 1
+        LR = 2
     }
     Startzeit = input.runningTime()
     basic.pause(5000)
 })
-/**
- * Falsche taste gedrückt
- */
 input.onButtonPressed(Button.B, function () {
-    if (LR == 1) {
+    if (LR == 2) {
         Reaktionszeit = input.runningTime() - Startzeit
         for (let index = 0; index < 3; index++) {
             basic.showNumber(Reaktionszeit)
